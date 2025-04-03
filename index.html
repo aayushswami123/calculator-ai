@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Calculator</title>
+  <script src="./script.js"></script>
+  <link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+  <div class="calculator-container">
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="standard">Standard</button>
+      <button class="mode-btn" data-mode="scientific">Scientific</button>
+      <button class="mode-btn" data-mode="converter">Converter</button>
+      <button class="mode-btn" data-mode="graph">Graph</button>
+    </div>
+    
+    <div class="calculator-mode" id="standard-mode">
+      <div class="display-container">
+        <div class="previous-operation" id="previous-operation"></div>
+        <div class="current-input" id="current-input">0</div>
+      </div>
+      
+      <div class="keypad">
+        <button class="btn clear-btn" data-action="clear">C</button>
+        <button class="btn operation-btn" data-action="backspace">⌫</button>
+        <button class="btn operation-btn" data-action="percent">%</button>
+        <button class="btn operation-btn" data-action="operation">/</button>
+        
+        <button class="btn" data-action="number">7</button>
+        <button class="btn" data-action="number">8</button>
+        <button class="btn" data-action="number">9</button>
+        <button class="btn operation-btn" data-action="operation">*</button>
+        
+        <button class="btn" data-action="number">4</button>
+        <button class="btn" data-action="number">5</button>
+        <button class="btn" data-action="number">6</button>
+        <button class="btn operation-btn" data-action="operation">-</button>
+        
+        <button class="btn" data-action="number">1</button>
+        <button class="btn" data-action="number">2</button>
+        <button class="btn" data-action="number">3</button>
+        <button class="btn operation-btn" data-action="operation">+</button>
+        
+        <button class="btn operation-btn" data-action="toggle-sign">+/-</button>
+        <button class="btn" data-action="number">0</button>
+        <button class="btn" data-action="decimal">.</button>
+        <button class="btn equal-btn" data-action="calculate">=</button>
+      </div>
+    </div>
+    
+    <div class="calculator-mode" id="scientific-mode" style="display: none;">
+      <div class="display-container">
+        <div class="previous-operation" id="sci-previous-operation"></div>
+        <div class="current-input" id="sci-current-input">0</div>
+      </div>
+      
+      <div class="scientific-keypad">
+        <button class="btn operation-btn" data-action="sci-operation">rad</button>
+        <button class="btn operation-btn" data-action="sci-operation">deg</button>
+        <button class="btn operation-btn" data-action="sci-memory">MC</button>
+        <button class="btn operation-btn" data-action="sci-memory">MR</button>
+        <button class="btn operation-btn" data-action="sci-memory">M+</button>
+        
+        <button class="btn operation-btn" data-action="sci-operation">sin</button>
+        <button class="btn operation-btn" data-action="sci-operation">cos</button>
+        <button class="btn operation-btn" data-action="sci-operation">tan</button>
+        <button class="btn operation-btn" data-action="sci-operation">ln</button>
+        <button class="btn operation-btn" data-action="sci-operation">log</button>
+        
+        <button class="btn operation-btn" data-action="sci-operation">π</button>
+        <button class="btn operation-btn" data-action="sci-operation">e</button>
+        <button class="btn operation-btn" data-action="sci-operation">^</button>
+        <button class="btn operation-btn" data-action="sci-operation">√</button>
+        <button class="btn operation-btn" data-action="sci-operation">x²</button>
+        
+        <button class="btn clear-btn" data-action="sci-clear">C</button>
+        <button class="btn operation-btn" data-action="sci-backspace">⌫</button>
+        <button class="btn operation-btn" data-action="sci-operation">(</button>
+        <button class="btn operation-btn" data-action="sci-operation">)</button>
+        <button class="btn operation-btn" data-action="sci-operation">%</button>
+        
+        <button class="btn" data-action="sci-number">7</button>
+        <button class="btn" data-action="sci-number">8</button>
+        <button class="btn" data-action="sci-number">9</button>
+        <button class="btn operation-btn" data-action="sci-operation">/</button>
+        <button class="btn operation-btn" data-action="sci-operation">!</button>
+        
+        <button class="btn" data-action="sci-number">4</button>
+        <button class="btn" data-action="sci-number">5</button>
+        <button class="btn" data-action="sci-number">6</button>
+        <button class="btn operation-btn" data-action="sci-operation">*</button>
+        <button class="btn operation-btn" data-action="sci-operation">1/x</button>
+        
+        <button class="btn" data-action="sci-number">1</button>
+        <button class="btn" data-action="sci-number">2</button>
+        <button class="btn" data-action="sci-number">3</button>
+        <button class="btn operation-btn" data-action="sci-operation">-</button>
+        <button class="btn operation-btn" data-action="sci-operation">|x|</button>
+        
+        <button class="btn operation-btn" data-action="sci-toggle-sign">+/-</button>
+        <button class="btn" data-action="sci-number">0</button>
+        <button class="btn" data-action="sci-decimal">.</button>
+        <button class="btn operation-btn" data-action="sci-operation">+</button>
+        <button class="btn equal-btn" data-action="sci-calculate">=</button>
+      </div>
+    </div>
+    
+    <div class="calculator-mode" id="converter-mode" style="display: none;">
+      <div class="converter-container">
+        <h3>Unit Converter</h3>
+        
+        <div class="converter-row">
+          <select id="converter-type">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+            <option value="time">Time</option>
+            <option value="area">Area</option>
+            <option value="volume">Volume</option>
+            <option value="speed">Speed</option>
+            <option value="data">Data</option>
+          </select>
+        </div>
+        
+        <div class="converter-row">
+          <input type="number" id="from-value" placeholder="Enter value">
+          <select id="from-unit">
+            <!-- Units will be populated by JavaScript -->
+          </select>
+        </div>
+        
+        <div class="converter-row">
+          <input type="number" id="to-value" placeholder="Result" readonly>
+          <select id="to-unit">
+            <!-- Units will be populated by JavaScript -->
+          </select>
+        </div>
+        
+        <div class="converter-row">
+          <button class="btn" id="convert-btn" style="width: 100%;">Convert</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="calculator-mode" id="graph-mode" style="display: none;">
+      <div class="graph-container">
+        <h3>Function Grapher</h3>
+        
+        <div class="graph-input">
+          <input type="text" id="function-input" placeholder="Enter function (e.g., x^2, sin(x), 2*x+1)">
+          <button class="btn" id="graph-btn">Plot</button>
+        </div>
+        
+        <div class="graph-input">
+          <input type="number" id="x-min" placeholder="X min" value="-10">
+          <input type="number" id="x-max" placeholder="X max" value="10">
+          <input type="number" id="y-min" placeholder="Y min" value="-10">
+          <input type="number" id="y-max" placeholder="Y max" value="10">
+        </div>
+        
+        <canvas id="graph-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <div class="history-container">
+    <h3>History</h3>
+    <div id="history-list"></div>
+  </div>
+  
+</body>
+</html>
