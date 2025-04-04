@@ -1,3 +1,3 @@
 # Calculator-ai
 
-this is the cod for the functional Calculator  .
+this is the code for the functional Calculator  .
